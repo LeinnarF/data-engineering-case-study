@@ -1,0 +1,30 @@
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Environment Variables
+.env
+
+# Raw Data (do not commit large datasets)
+raw_data/*.csv
+raw_data/*.zip
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+
+# Data engineering / DB files
+*.db
+*.duckdb
