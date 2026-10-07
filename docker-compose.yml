@@ -5,13 +5,14 @@ services:
     image: postgres:15
     container_name: wwi-postgres
     environment:
-      POSTGRES_USER: wwi_admin
-      POSTGRES_PASSWORD: wwi_password
-      POSTGRES_DB: wwi_db
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
+      POSTGRES_DB: asb_oltp
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./data/sql/init_databases.sql:/docker-entrypoint-initdb.d/init_databases.sql
     restart: unless-stopped
 
 volumes:

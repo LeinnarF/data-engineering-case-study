@@ -7,8 +7,9 @@ env/
 .env
 
 # Raw Data (do not commit large datasets)
-raw_data/*.csv
-raw_data/*.zip
+data/raw_data/*.csv
+data/raw_data/*.zip
+data/raw_data/archive/
 
 # Python caches
 __pycache__/

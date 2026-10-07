@@ -1,0 +1,43 @@
+2026-10-07 21:30:53,549 - INFO - Starting Data Engineering Pipeline...
+2026-10-07 21:30:53,550 - INFO - Step 1: Validating raw data files...
+2026-10-07 21:30:53,550 - INFO - Steps 2 & 3: Creating OLTP schema and ingesting CSV data...
+2026-10-07 21:30:53,566 - INFO - Initializing OLTP schema...
+2026-10-07 21:30:53,644 - INFO - OLTP schemas and tables successfully created.
+2026-10-07 21:30:53,644 - INFO - Loading CSV files into OLTP tables...
+2026-10-07 21:30:53,648 - INFO - Loaded application.countries from data/raw_data/archive/Application/Application.Countries.csv
+2026-10-07 21:30:53,650 - INFO - Loaded application.state_provinces from data/raw_data/archive/Application/Application.StateProvinces.csv
+2026-10-07 21:30:53,778 - INFO - Loaded application.cities from data/raw_data/archive/Application/Application.Cities.csv
+2026-10-07 21:30:53,787 - INFO - Loaded application.people from data/raw_data/archive/Application/Application.People.csv
+2026-10-07 21:30:53,789 - INFO - Loaded application.delivery_methods from data/raw_data/archive/Application/Application.DeliveryMethods.csv
+2026-10-07 21:30:53,792 - INFO - Loaded application.payment_methods from data/raw_data/archive/Application/Application.PaymentMethods.csv
+2026-10-07 21:30:53,796 - INFO - Loaded application.transaction_types from data/raw_data/archive/Application/Application.TransactionTypes.csv
+2026-10-07 21:30:53,799 - INFO - Loaded warehouse.colors from data/raw_data/archive/Warehouse/Warehouse.Colors.csv
+2026-10-07 21:30:53,802 - INFO - Loaded warehouse.package_types from data/raw_data/archive/Warehouse/Warehouse.PackageTypes.csv
+2026-10-07 21:30:53,805 - INFO - Loaded warehouse.stock_groups from data/raw_data/archive/Warehouse/Warehouse.StockGroups.csv
+2026-10-07 21:30:53,809 - INFO - Loaded warehouse.stock_items from data/raw_data/archive/Warehouse/Warehouse.StockItems.csv
+2026-10-07 21:30:53,811 - INFO - Loaded sales.customer_categories from data/raw_data/archive/Sales/Sales.CustomerCategories.csv
+2026-10-07 21:30:53,813 - INFO - Loaded sales.buying_groups from data/raw_data/archive/Sales/Sales.BuyingGroups.csv
+2026-10-07 21:30:53,821 - INFO - Loaded sales.customers from data/raw_data/archive/Sales/Sales.Customers.csv
+2026-10-07 21:30:54,140 - INFO - Loaded sales.orders from data/raw_data/archive/Sales/Sales.Orders.csv
+2026-10-07 21:30:55,066 - INFO - Loaded sales.order_lines from data/raw_data/archive/Sales/Sales.OrderLines.csv
+2026-10-07 21:30:55,367 - INFO - Loaded sales.invoices from data/raw_data/archive/Sales/Sales.Invoices.csv
+2026-10-07 21:30:56,186 - INFO - Loaded sales.invoice_lines from data/raw_data/archive/Sales/Sales.InvoiceLines.csv
+2026-10-07 21:30:56,187 - INFO - Step 4: Validating OLTP load...
+2026-10-07 21:30:56,199 - INFO - PASS - Check for NULL Primary Keys in Orders
+2026-10-07 21:30:56,201 - INFO - PASS - Check for Duplicate Primary Keys in Customers
+2026-10-07 21:30:56,259 - INFO - PASS - Check Foreign Key Integrity (OrderLines -> Orders)
+2026-10-07 21:30:56,273 - INFO - PASS - Check Foreign Key Integrity (Orders -> Customers)
+2026-10-07 21:30:56,289 - INFO - PASS - Validate Quantities (Quantity >= 0 in OrderLines)
+2026-10-07 21:30:56,292 - INFO - PASS - Validate Monetary Values (UnitPrice >= 0 in StockItems)
+2026-10-07 21:30:56,293 - INFO - All OLTP data quality checks passed successfully!
+2026-10-07 21:30:56,293 - INFO - Steps 5, 6, 7: Preparing OLAP database schemas and loading data...
+2026-10-07 21:30:56,302 - INFO - Initializing OLAP Star Schema tables...
+2026-10-07 21:30:56,356 - INFO - Loading Dimensions and Facts into OLAP (via postgres_fdw)...
+2026-10-07 21:31:01,650 - INFO - OLAP transformations completed successfully!
+2026-10-07 21:31:01,650 - INFO - Step 8: Running final data quality checks...
+2026-10-07 21:31:01,692 - INFO - PASS - Check for Orphaned Facts (fact_sale -> dim_customer)
+2026-10-07 21:31:01,715 - INFO - PASS - Check for Orphaned Facts (fact_sale -> dim_stock_item)
+2026-10-07 21:31:01,716 - INFO - PASS - SCD2: Only one active record per Customer
+2026-10-07 21:31:01,718 - INFO - PASS - SCD2: No overlapping date ranges
+2026-10-07 21:31:01,719 - INFO - All OLAP data quality checks passed successfully!
+2026-10-07 21:31:01,719 - INFO - Pipeline completed successfully!
