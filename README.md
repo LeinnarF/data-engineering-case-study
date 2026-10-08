@@ -38,28 +38,20 @@ flowchart LR
    git clone <repo-url>
    cd data-engineering-case-study
    ```
-2. **Download Raw Data:**
-   Download the [Kaggle Wide World Importers dataset](https://www.kaggle.com/datasets/pauloviniciusornelas/wwimporters). Extract the `archive` folder into `data/raw_data/archive/` so that the path looks like `data/raw_data/archive/Sales/Sales.Orders.csv`.
-3. **Set up Environment:**
-   ```bash
-   cp .env.example .env
-   python -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-4. **Start the Database:**
-   ```bash
-   docker compose up -d
-   ```
+2. **Configure Kaggle API:**
+   To automatically download the raw dataset, you must authenticate with Kaggle. Place your `kaggle.json` token in `~/.kaggle/` (Linux/Mac) or `C:\Users\<User>\.kaggle\` (Windows).
 
 ---
 
 ## 4. Execution (One Command)
 
-To run the entire pipeline end-to-end (CSV -> OLTP -> OLAP + Data Quality):
+To run the entire pipeline end-to-end (Database setup -> CSV Download -> OLTP Ingestion -> OLAP Transformation + Data Quality), simply execute the unified Python orchestrator:
+
 ```bash
-source venv/bin/activate && python src/pipeline.py
+python run.py
 ```
+
+*(Note: The script automatically spins up Docker, creates the Python virtual environment, installs dependencies, downloads the Kaggle dataset, and executes the ETL pipeline).*
 
 To demonstrate the Slowly Changing Dimension (SCD Type 2) historical tracking:
 ```bash
