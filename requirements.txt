@@ -2,3 +2,4 @@ psycopg[binary]
 python-dotenv==1.0.1
 pandas
 sqlalchemy
+kaggle
